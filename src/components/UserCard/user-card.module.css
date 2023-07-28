@@ -1,0 +1,31 @@
+.card__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3B4050;
+  padding: 15px;
+}
+
+.card__container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.card__image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.card__title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  color: #BB6BD9;
+  align-self: center;
+}

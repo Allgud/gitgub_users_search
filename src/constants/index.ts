@@ -1,0 +1,1 @@
+export const PUBLIC_API = "https://api.github.com/search/users"

@@ -2,7 +2,6 @@ import styles from './button.module.css'
 
 type ButtonProps = {
   text: string,
-  isFull?: boolean,
   onClick: () => void
 }
 

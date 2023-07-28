@@ -1,5 +1,5 @@
 .button__wrapper {
-  min-width: 10px;
+  min-width: 160px;
   height: 100%;
   padding: 0px 10px;
   display: flex;
@@ -12,7 +12,7 @@
 
 .button__text {
   font-weight: 400;
-  font-size: 16px;
-  line-height: normal;
+  font-size: 20px;
+  line-height: 27px;
   color: #ffffff;
 }
