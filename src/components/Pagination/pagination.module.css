@@ -1,0 +1,31 @@
+.pagination__container {
+  height: 40px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 40px;
+  align-self: center;
+}
+
+.pagination__button,
+.pagination__item {
+  width: 40px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3B4050;
+  color: #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.item__active {
+  background-color: #903BD3;
+  color: #ffffff;
+}
+
+.btn__disabled {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
