@@ -1,0 +1,18 @@
+.button__wrapper {
+  min-width: 10px;
+  height: 100%;
+  padding: 0px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #903BD3;
+  border: none;
+  border-radius: 10px;
+}
+
+.button__text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: normal;
+  color: #ffffff;
+}

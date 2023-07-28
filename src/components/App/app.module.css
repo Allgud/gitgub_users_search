@@ -1,0 +1,15 @@
+.app__wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3B4050;
+}
+
+.app__container {
+  width: 1200px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
