@@ -3,11 +3,13 @@ import styles from './app.module.css'
 import { useState, useEffect, useCallback } from 'react'
 import UserCard from '../UserCard';
 import Pagination from '../Pagination'
-import { PUBLIC_API, PAGE_CARDS_COUNT } from "../../constants";
+import { PUBLIC_API, PAGE_CARDS_COUNT, DEFAULT_PAGE_NUMBER } from "../../constants";
 import { User } from '../../models';
+import { getTotalPageNumber } from './helpers/getTotalPageNumber';
 
 const App = () => {
   const [users, setUsers] = useState<User[] | []>([])
+  const [totalPages, setTotalPages] = useState<number>(DEFAULT_PAGE_NUMBER)
 
   const togglePage = useCallback(async (page: number) => {
     const response = await fetch(`${PUBLIC_API}?q=Q&per_page=${PAGE_CARDS_COUNT}&page=${page}`)
@@ -18,6 +20,7 @@ const App = () => {
   const getData = async () => {
     const response = await fetch(`${PUBLIC_API}?q=Q&per_page=${PAGE_CARDS_COUNT}`)
     const result = await response.json()
+    setTotalPages(getTotalPageNumber(result.total_count))
     setUsers(result.items)
   }
 
@@ -40,7 +43,7 @@ const App = () => {
             </li>
           ))}
         </ul>
-        <Pagination pageCount={5} onPageToggle={togglePage } />
+        <Pagination pageCount={totalPages} onPageToggle={togglePage } />
       </div>
     </div>
   );

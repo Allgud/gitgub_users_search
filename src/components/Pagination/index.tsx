@@ -1,7 +1,6 @@
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
-import cn from 'classnames/bind'
+import cnBind from 'classnames/bind'
 import { useState, useEffect } from 'react'
-import { getArrayNumbers } from './helpers/getArrayNumbers'
 import { DEFAULT_PAGE_NUMBER } from '../../constants'
 import styles from './pagination.module.css'
 
@@ -10,7 +9,7 @@ type PaginationProps = {
   onPageToggle: (arg1: number) => {}
 }
 
-const cx = cn.bind(styles)
+const cx = cnBind.bind(styles)
 
 const Pagination = ({ pageCount, onPageToggle }: PaginationProps) => {
   const [active, setActive] = useState<number>(DEFAULT_PAGE_NUMBER)
@@ -19,19 +18,14 @@ const Pagination = ({ pageCount, onPageToggle }: PaginationProps) => {
     setActive(DEFAULT_PAGE_NUMBER)
   }, [])
 
-  const onPageClick = (pageNumber: number) => {
-    setActive(pageNumber)
-    onPageToggle(pageNumber)
-  }
-
   const onChevronClick = (direction: string) => {
     switch (direction) {
-      case 'back': {
+      case 'prev': {
         setActive(prev => prev - DEFAULT_PAGE_NUMBER)
         onPageToggle(active - DEFAULT_PAGE_NUMBER)
         break;
       }
-      case 'forward': {
+      case 'next': {
         setActive(prev => prev + DEFAULT_PAGE_NUMBER)
         onPageToggle(active + DEFAULT_PAGE_NUMBER)
         break;
@@ -44,24 +38,16 @@ const Pagination = ({ pageCount, onPageToggle }: PaginationProps) => {
     <div className={styles.pagination__container}>
       <button
         className={cx(styles.pagination__button, { btn__disabled: active === DEFAULT_PAGE_NUMBER })}
-        onClick={() => onChevronClick('back')}
+        onClick={() => onChevronClick('prev')}
       >
         <FaChevronLeft />
       </button>
-      {
-        getArrayNumbers(pageCount).map(num => (
-          <span
-            key={num}
-            className={cx(styles.pagination__item, { item__active: num === active })}
-            onClick={() => onPageClick(num)}
-          >
-            {num}
-          </span>
-        ))
-      }
+      <div className={styles.pagination__item}>
+        {active} / {pageCount}
+      </div>
       <button
         className={cx(styles.pagination__button, { btn__disabled: active === pageCount })}
-        onClick={() => onChevronClick('forward')}
+        onClick={() => onChevronClick('next')}
       >
         <FaChevronRight />
       </button>

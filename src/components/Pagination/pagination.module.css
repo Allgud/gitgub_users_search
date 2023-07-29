@@ -19,9 +19,9 @@
   cursor: pointer;
 }
 
-.item__active {
-  background-color: #903BD3;
-  color: #ffffff;
+.pagination__item {
+  width: 100px;
+  padding: 10px;
 }
 
 .btn__disabled {
