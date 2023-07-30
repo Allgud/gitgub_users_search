@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+  position: relative;
 }
 
 .search__input {
@@ -25,4 +26,12 @@
 
 .search__input::placeholder {
   color: #b1b1b1;
+}
+
+.search__clear {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 190px;
+  cursor: pointer;
 }

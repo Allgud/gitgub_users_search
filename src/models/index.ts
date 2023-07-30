@@ -19,3 +19,21 @@ export interface User {
   type: string,
   url: string,
 }
+
+export interface OneUser extends User {
+    events_url: string,
+    name: string,
+    company: string | null,
+    blog: string,
+    location: string | null,
+    email: string | null,
+    hireable: boolean,
+    bio: string,
+    twitter_username: string | null,
+    public_repos: number,
+    public_gists: number,
+    followers: number,
+    following: number,
+    created_at: string,
+    updated_at: string
+}

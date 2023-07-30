@@ -8,6 +8,7 @@
   background-color: #903BD3;
   border: none;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .button__text {
