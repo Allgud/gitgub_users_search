@@ -1,0 +1,50 @@
+.radio__label {
+  position: relative;
+  display: inline-block;
+  margin: 0.6em 1em;
+  font-size: 16px;
+  color: #ffffff;
+  transform: translateX(16px);
+  cursor: pointer;
+}
+
+.radio__input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.indicator {
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 0;
+  left: -24px;
+}
+
+.indicator::after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.radio__input:hover + .indicator {
+  background-color: #cccccc;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.radio__input:checked + .indicator::after {
+  display: block;
+  border: solid #903BD3;
+  border-radius: 1em;
+  background-color: #903BD3;
+  width: 10px;
+  height: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
