@@ -1,5 +1,5 @@
 import Button from '../Button'
-import { useState } from 'react'
+import {useSearch} from '../../hooks/useSearch'
 import styles from './search-input.module.css'
 
 type SearchInputProps = {
@@ -7,12 +7,7 @@ type SearchInputProps = {
 }
 
 const SearchInput = ({ onSearchClick }: SearchInputProps) => {
-  const [text, setText] = useState<string>('')
-
-  const onClickButton = () => {
-    onSearchClick(text)
-    setText('')
-  }
+  const { text, onTextChange } = useSearch()
 
   return (
     <div className={styles.search__group}>
@@ -21,8 +16,8 @@ const SearchInput = ({ onSearchClick }: SearchInputProps) => {
         className={styles.search__input}
         placeholder='Поиск...'
         value={text}
-        onChange={(evt) => setText(evt.target.value)} />
-      <Button text='Найти' onClick={() => onClickButton()}/>
+        onChange={(evt) => onTextChange(evt.target.value)} />
+      <Button text='Найти' onClick={() => onSearchClick(text)}/>
     </div>
   )
 }

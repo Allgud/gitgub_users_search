@@ -29,6 +29,7 @@ const Sorting = ({onSortingChange}: SortingProps) => {
 
   return (
     <div className={styles.sorting__container}>
+      <span className={styles.sorting__title}>Сортировка:</span>
       <RadioButton
         title={RadioButtonsLabels.nevermind}
         id={RadioButtonsLabels.nevermind}

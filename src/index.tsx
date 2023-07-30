@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import App from './components/App';
+import SearchProvider  from './HOC/SearchProvider';
 import './styles.css'
 
 const root = ReactDOM.createRoot(
@@ -7,6 +8,8 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
+  <SearchProvider>
     <App />
+  </SearchProvider>
 );
 
