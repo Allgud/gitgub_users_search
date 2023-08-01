@@ -1,15 +1,14 @@
 import Button from '../Button'
 import { MdOutlineClose } from 'react-icons/md'
-import { useSearch } from '../../hooks/useSearch'
 import styles from './search-input.module.css'
 
 type SearchInputProps = {
   onSearchClick: (arg1: string) => {};
+  onTextChange: (arg1: string) => void,
+  text: string
 }
 
-const SearchInput = ({ onSearchClick }: SearchInputProps) => {
-  const { text, onTextChange } = useSearch()
-
+const SearchInput = ({ onSearchClick, onTextChange, text }: SearchInputProps) => {
   const clearSearchInput = () => {
     onTextChange('')
   }
@@ -28,6 +27,7 @@ const SearchInput = ({ onSearchClick }: SearchInputProps) => {
         <MdOutlineClose
           className={styles.search__clear}
           onClick={() => clearSearchInput()}
+          data-testid="close-btn"
         />
       }
       <Button text='Найти' onClick={() => onSearchClick(text)}/>

@@ -3,7 +3,6 @@ import SearchInput from '../SearchInput';
 import UserCard from '../UserCard';
 import Pagination from '../Pagination'
 import Sorting from '../Sorting';
-import { useSearch } from '../../hooks/useSearch';
 import { SEARCH_API, PAGE_CARDS_COUNT, DEFAULT_PAGE_NUMBER, USER_API } from "../../constants";
 import { OneUser, User } from '../../models';
 import { getTotalPageNumber } from './helpers/getTotalPageNumber';
@@ -15,7 +14,7 @@ const App = () => {
   const [totalPages, setTotalPages] = useState<number>(DEFAULT_PAGE_NUMBER)
   const [currentUser, setCurrentUser] = useState<OneUser | null>(null)
   const [modalVisible, setModalVisible] = useState<boolean>(false)
-  const { text } = useSearch()
+  const [searchValue, setSearchValue] = useState<string>('')
 
   const request = async (queryString: string, sorting: boolean = false) => {
     const response = await fetch(queryString)
@@ -37,22 +36,22 @@ const App = () => {
   }
 
   const sortUsers = async (order: string = '') => {
-    if (text && order) {
-      request(`${SEARCH_API}?q=${text}&sort=repositories&order=${order}&per_page=${PAGE_CARDS_COUNT}`)
+    if (searchValue && order) {
+      request(`${SEARCH_API}?q=${searchValue}&sort=repositories&order=${order}&per_page=${PAGE_CARDS_COUNT}`)
       return
     }
 
-    if (order && !text) {
+    if (order && !searchValue) {
       request(`${SEARCH_API}?q=Q&sort=repositories&order=${order}&per_page=${PAGE_CARDS_COUNT}`)
       return
     }
 
-    if (text && !order) {
-      searchUser(text)
+    if (searchValue && !order) {
+      searchUser(searchValue)
       return
     }    
     
-    if (!text && !order) {
+    if (!searchValue && !order) {
       getData()
       return
     }
@@ -69,6 +68,10 @@ const App = () => {
     setModalVisible(false)
   }
 
+  const onTextChange = (str: string) => {
+    setSearchValue(str)
+  }
+
   useEffect(() => {
     getData()
   }, [])
@@ -76,11 +79,15 @@ const App = () => {
   return (
     <div className={styles.app__wrapper}>
       <div className={styles.app__container}>
-        <SearchInput onSearchClick={searchUser} />
+        <SearchInput
+          onSearchClick={searchUser}
+          text={searchValue}
+          onTextChange={onTextChange}
+        />
         <Sorting onSortingChange={sortUsers}/>
         <ul className={styles.results__list}>
           {users?.map(user => (
-            <li key={user.id} className={styles.list__item} onClick={() => togglePage(3)}>
+            <li key={user.id} className={styles.list__item} onClick={() => togglePage(3)} data-testid="user-item">
               <UserCard
                 login={user.login}
                 avatar={user.avatar_url}

@@ -17,6 +17,11 @@ const Pagination = ({ pageCount, onPageToggle }: PaginationProps) => {
 
   const onChevronClick = (direction: string) => {
     switch (direction) {
+      case 'first': {
+        setActive(DEFAULT_PAGE_NUMBER)
+        onPageToggle(DEFAULT_PAGE_NUMBER)
+        break;
+      }
       case 'prev': {
         setActive(prev => prev - DEFAULT_PAGE_NUMBER)
         onPageToggle(active - DEFAULT_PAGE_NUMBER)
@@ -27,23 +32,12 @@ const Pagination = ({ pageCount, onPageToggle }: PaginationProps) => {
         onPageToggle(active + DEFAULT_PAGE_NUMBER)
         break;
       }
-      default: setActive(DEFAULT_PAGE_NUMBER) 
-    }
-  }
-
-  const goTo = (endpoint: string) => {
-    switch (endpoint) {
-      case 'first': {
-        setActive(DEFAULT_PAGE_NUMBER)
-        onPageToggle(DEFAULT_PAGE_NUMBER)
-        break;
-      }
       case 'last': {
         setActive(pageCount)
         onPageToggle(pageCount)
         break;
       }
-      default: setActive(DEFAULT_PAGE_NUMBER)
+      default: setActive(DEFAULT_PAGE_NUMBER) 
     }
   }
 
@@ -51,7 +45,7 @@ const Pagination = ({ pageCount, onPageToggle }: PaginationProps) => {
     <div className={styles.pagination__container}>
       <button
         className={cx(styles.pagination__button, { btn__disabled: active === DEFAULT_PAGE_NUMBER })}
-        onClick={() => goTo('first')}
+        onClick={() => onChevronClick('first')}
       >
         <HiChevronDoubleLeft />
       </button>
@@ -72,7 +66,7 @@ const Pagination = ({ pageCount, onPageToggle }: PaginationProps) => {
       </button>
       <button
         className={cx(styles.pagination__button, { btn__disabled: active === pageCount })}
-        onClick={() => goTo('last')}
+        onClick={() => onChevronClick('last')}
       >
         <HiChevronDoubleRight /> 
       </button>
