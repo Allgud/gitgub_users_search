@@ -87,7 +87,12 @@ const App = () => {
         <Sorting onSortingChange={sortUsers}/>
         <ul className={styles.results__list}>
           {users?.map(user => (
-            <li key={user.id} className={styles.list__item} onClick={() => togglePage(3)} data-testid="user-item">
+            <li
+              key={user.id}
+              className={styles.list__item}
+              onClick={() => togglePage(3)}
+              data-testid="user-item"
+            >
               <UserCard
                 login={user.login}
                 avatar={user.avatar_url}
