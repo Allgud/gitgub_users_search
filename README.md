@@ -1,6 +1,6 @@
 # Небольшое приложение по поиску пользователей на Github
 
-Исползован create-react-app --template typescript
+# Исползован create-react-app --template typescript
 
 ## Поиск осуществляется по логину.
 
